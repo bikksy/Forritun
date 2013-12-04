@@ -13,8 +13,13 @@ using namespace std;
 */
 int fibonacciRecursive(int n) {
 
-	if(n == 1) {
+
+	if(n < 1) {
 		return 0;
+	}
+
+	if(n == 1) {
+		return 1;
 	}
 
 	if(n == 2){
@@ -36,10 +41,14 @@ int fibonacciRecursive(int n) {
 */
 int fibonacciBruteForce(int n) {
 
+	if(n < 1) {
+		return 0;
+	}
+
 	//We calculate all the fibonacci numbers and store them in a list.
 	int listOfFibonacciNumbers[n];
 	//We initialize the first two values of the list, since we need to know at least two numbers to calculate the rest.
-	listOfFibonacciNumbers[0] = 0;
+	listOfFibonacciNumbers[0] = 1;
 	listOfFibonacciNumbers[1] = 1;
 
 	for(int i = 2; i < n; i++) {
@@ -61,8 +70,15 @@ int fibonacciBruteForce(int n) {
 int fibonacciDynamicProgramming(int n) {
 
 
+	if(n < 1) {
+		return 0;
+	}
+	if(n < 3) {
+		return 1;
+	}
+
 	//Again we initalize the first two values, storing them in a and b.
-	int a = 0, b = 1, c;
+	int a = 1, b = 1, c;
 
 	for(int i = 2; i < n; i++) {
 		c = a + b;
@@ -82,7 +98,8 @@ int main() {
 	cin >> number;
 
 	//You can change the function call here to test the other methods.
-	answer = fibonacciDynamicProgramming(number);
+	answer = fibonacciRecursive(number);
+	cout << answer;
 	cout << "The fibonacci number nr. " << number << " is: " << answer << endl;
 
 	return 0;

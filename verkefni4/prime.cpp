@@ -9,6 +9,10 @@ using namespace std;
 bool isPrime(int n) {
 
 
+	//1 is a special case, it's not a prime although it "could be" given the definition of prime numbers.
+	if(n == 1) {
+		return false;
+	}
 	//We start at 2 since every number is divisible by 1 (11/1 = 11), and we end at n-1 because every n is divisible by n (11/11 = 1).
 	for(int i = 2; i < n - 1; i++) {
 
