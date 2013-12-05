@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+enum EntityType{Player, Dragon, Fluffer};
+
 class Entity
 {
 public:
@@ -9,6 +11,7 @@ public:
 	~Entity();
 
 	void showLocation();
+	virtual EntityType getType() = 0;
 	/* data */
 
 private:
