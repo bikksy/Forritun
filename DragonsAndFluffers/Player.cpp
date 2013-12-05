@@ -1,21 +1,28 @@
 #include <iostream>
-#include "Entity.cpp"
+#include "Entity.h"
 using namespace std;
 
+const int PLAYER = 0;
+const int PLAYER_HEALTH = 100;
+const int PLAYER_STARTING_ARMOR = 50;
 
 class Player : public Entity {
 public:
 	Player(int x, int y);
-	~Player();
+//	~Player();
 
-    virtual EntityType getType();
+    virtual int getType();
 	/* data */
+private:
+	int armor;
 };
 
 
-Player::Player(int x, int y) : Entity(x, y) {};
+Player::Player(int x, int y) : Entity(x, y, PLAYER_HEALTH) {
+	armor = PLAYER_STARTING_ARMOR;
+};
 
-EntityType Player::getType()
+int Player::getType()
 {
     return PLAYER;
 }
