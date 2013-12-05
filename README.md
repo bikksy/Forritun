@@ -16,4 +16,5 @@ Annars getið þið líka sótt hverja skrá fyrir sig.
 Youtube Stream
 ===============
 Stream-ið er með smá delay. Endilega hendið spurningum inn í grúppuna á FB, og við svörum þeim um hæl.
+
 [Smellið hér til þess að fara á stream-ið](http://www.youtube.com/watch?v=k2iat66R1v0)
