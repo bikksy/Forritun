@@ -6,9 +6,10 @@ int main() {
 
 
 	int n, sum = 0;
-	int cube[100][100];
+	
 
 	cin >> n;
+	int cube[n][n];
 
 	for(int row = 0; row < n; row++) {
 		for(int column = 0; column < n; column++) {

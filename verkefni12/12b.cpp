@@ -15,7 +15,7 @@ public:
 	bool full();
 
 	bool operator >(IntList& that);
-	IntList& operator =(const IntList& that);
+	IntList& operator =(IntList that);
 	IntList operator +(IntList& that);
 	friend ostream& operator<<(ostream& os, IntList& list);
 
@@ -107,7 +107,7 @@ bool IntList::operator >(IntList& that) {
 	return getSize() > that.getSize();	
 }
 
-IntList& IntList::operator =(const IntList& that) {
+IntList& IntList::operator =(IntList that) {
 	
 	size = that.size;
 	for(int i = 0; i < size; i++) {
