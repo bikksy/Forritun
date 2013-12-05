@@ -7,10 +7,10 @@ class Entity
 {
 public:
 	Entity();
-	Entity(int x, int y);
+	Entity(int x, int y, int h);
 	~Entity();
 
-	void showLocation();
+	virtual void move() = 0;
 	virtual EntityType getType() = 0;
 	/* data */
 
@@ -26,13 +26,9 @@ Entity::Entity() {
 	y = 0;
 }
 
-Entity::Entity(int x, int y) {
+Entity::~Entity() {/*Entities don't have anything that's dynamically allocated, so we don't need to do anything.*/};
+Entity::Entity(int x, int y, int h) {
 	this->x = x;
 	this->y = y;
-	this->health = 0;
+	this->health = h;
 }
-
-void Entity::showLocation() {
-	cout << this->x << " - " << this->y;
-}
-
