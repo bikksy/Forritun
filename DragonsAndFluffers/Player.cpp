@@ -8,8 +8,14 @@ public:
 	Player(int x, int y);
 	~Player();
 
+    virtual EntityType getType();
 	/* data */
 };
 
 
 Player::Player(int x, int y) : Entity(x, y) {};
+
+EntityType Player::getType()
+{
+    return PLAYER;
+}

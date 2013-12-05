@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-enum EntityType{Player, Dragon, Fluffer};
+enum EntityType{PLAYER, DRAGON, FLUFFER};
 
 class Entity
 {
