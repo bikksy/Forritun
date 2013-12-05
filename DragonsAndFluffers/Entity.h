@@ -19,13 +19,21 @@ public:
 	int getY();
 	void setPosition(int newX, int newY);
 
+	bool hasMoved();
+	void setMoved();
+	void setUnmoved();
+
+
+
 	virtual void move(int& newX, int& newY) = 0;
 	virtual int getType() = 0;
+	virtual void die() = 0;
 
 private:
 	int x;
 	int y;
 	int health;
+	bool moved;
 };
 
 #endif

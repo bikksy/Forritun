@@ -2,8 +2,11 @@
 #include "Player.cpp"
 #include "Dragon.cpp"
 #include "Fluffer.cpp"
+
 //We need this for random.
 #include <stdlib.h>
+#include "time.h"
+#include "unistd.h"
 using namespace std;
 
 //The board is an n*n matrix - so we use a constant to define the size of the board.
@@ -23,7 +26,7 @@ public:
 	//Iterates through all cells in the board, and updates all entities.
 	bool play();
 	//The bord handles moving the entities around.
-	void updateEntityLocation(Entity& e, int newX, int newY);
+	void updateEntityLocation(Entity* e, int newX, int newY);
 	bool boundaryCheck(int x, int y);
 
 	//Overriding the outstream operator for the board.
@@ -42,7 +45,7 @@ private:
 Board::Board() {
 
 	//Seeding the random number generator.
-	srand(200389);
+	srand(time(NULL));
 
 	numberOfMobs = 0;
 	//We iterate through our board, and initialize each cell with NULL.
@@ -99,12 +102,24 @@ Board::~Board() {
 
 bool Board::play() {
 
+	//We have to keep track of what entities have moved - so we begin with
+	//setting them all to unmoved.
+	for(int i = 0; i < BOARD_SIZE; i++) {
+		for(int j = 0; j < BOARD_SIZE; j++) {
+			Entity* curr = board[i][j];
+			if(curr != NULL) {
+				curr->setUnmoved();
+			}
+		}
+	}
+
+
 	for(int i = 0; i < BOARD_SIZE; i++) {
 		for(int j = 0; j < BOARD_SIZE; j++) {
 			//If there is an entity in cell (i, j) then we call move for that entity.
 			Entity* curr = board[i][j];
 			//If the current entity is a dragon it doesn't move, so we don't need to do anything.
-			if(curr != NULL && curr->getType() != DRAGON) {
+			if(curr != NULL && curr->getType() != DRAGON && curr->hasMoved() == false) {
 				int newX, newY;
 				//newX and newY are passed as referenced variables to the function
 				//so their values get changed inside of it.
@@ -122,24 +137,23 @@ bool Board::play() {
 						//If the player walked into a cell that has another entity in it it is going to fight it.
 						else {
 							//player->fight(board[newX][newY]);
-							board[curr->getX()][curr->getY()] = NULL;	
+							//Delete the entity that is in the position since we're killing it.
+							board[newX][newY]->die();
+							sleep(3);
 							delete board[newX][newY];
-							curr->setPosition(newX, newY);
-							board[newX][newY] = curr;
-
+							updateEntityLocation(curr, newX, newY);
 						}
 					}
 					//the cell is empty so the entity just moves there.
 					else {
-
-						board[curr->getX()][curr->getY()] = NULL;
-						board[newX][newY] = curr;
-						curr->setPosition(newX, newY);
+						updateEntityLocation(curr, newX, newY);
 					}
 
-
 				}
+				//The bounds check failed, so we tried going off the board.
+				//Then we don't update the entity.
 				else {
+					//If the entity was a player we let him know that he bumped into a wall.
 					if(curr->getType() == PLAYER) {					
 						cout << "You just bumped into a wall you silly, silly goose." << endl;
 					}
@@ -147,10 +161,20 @@ bool Board::play() {
 			}
 		}
 	}
+	//We should return false when the game is over, for example if the player dies or there are no more entities in the
+	//grid.
 	return true;
 }
 
-void Board::updateEntityLocation(Entity& e, int newX, int newY) {
+void Board::updateEntityLocation(Entity* curr, int newX, int newY) {
+	//NULL the old position since there isn't an entity there anymore.
+	board[curr->getX()][curr->getY()] = NULL;
+	//Move the current entity to the new position.
+	board[newX][newY] = curr;
+	//Update the entity so that it knows where it is.
+	curr->setPosition(newX, newY);
+	//Set the entity to moved so we don't move it again in this round.
+	curr->setMoved();
 
 }
 

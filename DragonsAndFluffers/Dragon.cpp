@@ -12,6 +12,7 @@ public:
 
     virtual int getType();
     virtual void move(int& newX, int& newY);
+    virtual void die();
 };
 
 
@@ -26,3 +27,11 @@ int Dragon::getType()
 
 void Dragon::move(int& newX, int& newY) {/*Do nothing. */};
 
+
+void Dragon::die() {
+	cout << endl << endl
+	     << "OH NO. IT'S A DRAGON." << endl
+		 << "Prepare to fight!!!!" << endl
+		 << "...." << endl
+		 << "Ok. It's dead now." << endl;
+}

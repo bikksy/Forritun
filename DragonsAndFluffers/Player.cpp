@@ -14,7 +14,9 @@ public:
 
     virtual int getType();
     virtual void move(int& newX, int& newY);
+    virtual void die();
     int getArmor();
+
 
     friend ostream& operator <<(ostream& out, Player& p);
 private:
@@ -33,6 +35,11 @@ int Player::getType()
 
 int Player::getArmor() {
 	return armor;
+}
+
+void Player::die() {
+	cout << "Somehow you managed to die in a game" << endl
+		 << "where you cannot die. wat." << endl;
 }
 
 void Player::move(int& newX, int& newY) {
@@ -67,7 +74,6 @@ void Player::move(int& newX, int& newY) {
 			return;
 	}
 
-
 }
 
 ostream& operator <<(ostream& out, Player& p) {
@@ -77,3 +83,5 @@ ostream& operator <<(ostream& out, Player& p) {
 
 	return out;
 }
+
+

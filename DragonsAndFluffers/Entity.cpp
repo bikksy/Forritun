@@ -32,3 +32,15 @@ void Entity::setPosition(int newX, int newY) {
 	x = newX;
 	y = newY;
 }
+
+bool Entity::hasMoved() {
+	return moved;
+}
+
+void Entity::setMoved() {
+	moved = true;
+}
+
+void Entity::setUnmoved() {
+	moved = false;
+}
