@@ -11,7 +11,7 @@ public:
 	Fluffer(int x, int y);
 
 	virtual int getType();
-	virtual void move();
+	virtual void move(int& newX, int& newY);
 
 };
 
@@ -21,4 +21,4 @@ int Fluffer::getType() {
 	return FLUFFER;
 }
 
-void Fluffer::move() {/*Do nothing*/};
+void Fluffer::move(int& newX, int& newY) {/*Do nothing*/};

@@ -17,15 +17,15 @@ public:
 
 	int getX();
 	int getY();
+	void setPosition(int newX, int newY);
 
-	virtual void move() = 0;
+	virtual void move(int& newX, int& newY) = 0;
 	virtual int getType() = 0;
 
 private:
 	int x;
 	int y;
 	int health;
-
 };
 
 #endif

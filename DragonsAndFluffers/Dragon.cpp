@@ -11,7 +11,7 @@ public:
 	Dragon(int x, int y);
 
     virtual int getType();
-    virtual void move();
+    virtual void move(int& newX, int& newY);
 };
 
 
@@ -24,5 +24,5 @@ int Dragon::getType()
 }
 
 
-void Dragon::move() {/*Do nothing. */};
+void Dragon::move(int& newX, int& newY) {/*Do nothing. */};
 

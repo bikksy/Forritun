@@ -27,3 +27,8 @@ int Entity::getX() {
 int Entity::getY() {
 	return y;
 };
+
+void Entity::setPosition(int newX, int newY) {
+	x = newX;
+	y = newY;
+}

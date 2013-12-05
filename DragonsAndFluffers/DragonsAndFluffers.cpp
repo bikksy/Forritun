@@ -11,9 +11,10 @@ int main() {
 
 	Board* b = new Board();
 
-
-	for(int i = 0; i < 10; i++) {
-		//fluff
+	bool gameOn = true;
+	while(gameOn) {
+		cout << *b << endl;
+		gameOn = b->play();
 	}
 
 	return 0;
