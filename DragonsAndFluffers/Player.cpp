@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ctype.h>
 #include "Player.h"
+#include <stdio.h>
 using namespace std;
 
 const int PLAYER = 0;
@@ -28,8 +29,8 @@ void Player::die() {
 
 void Player::move(int& newX, int& newY) {
 
-	cout << "Where do you want to go?" << endl
-		 << "U for up, L for left, D for down and R for right: ";
+	cout << "Where do you want to go? You're at: (" << getX() << ", " << getY() << ")." << endl
+		 << "W for up, A for left, S for down, D for right (then press enter/return): ";
 
 
 	char direction;
@@ -37,19 +38,19 @@ void Player::move(int& newX, int& newY) {
 	direction = toupper(direction);
 
 	switch(direction) {
-		case 'U':
+		case 'W':
 			newX = getX() - 1;
 			newY = getY();
 			break;
-		case 'L':
+		case 'A':
 			newX = getX();
 			newY = getY() - 1;
 			break;		
-		case 'D':
+		case 'S':
 			newX = getX() + 1;
 			newY = getY();
 			break;
-		case 'R':
+		case 'D':
 			newX = getX();
 			newY = getY() + 1;
 			break;

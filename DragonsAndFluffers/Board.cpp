@@ -7,7 +7,6 @@
 //We need this for random.
 #include <stdlib.h>
 #include "time.h"
-#include "unistd.h"
 using namespace std;
 
 //The board is an n*n matrix - so we use a constant to define the size of the board.
@@ -117,7 +116,6 @@ bool Board::play() {
 							//player->fight(board[newX][newY]);
 							//Delete the entity that is in the position since we're killing it.
 							board[newX][newY]->die();
-							sleep(3);
 							delete board[newX][newY];
 							updateEntityLocation(curr, newX, newY);
 						}
@@ -176,7 +174,7 @@ ostream& operator <<(ostream& out, Board& b) {
 	for(int i = 0; i < BOARD_SIZE; i++) {
 		out << "  " << i << " ";
 	}
-	out << endl;
+	out << "  Y "  << endl;
 	for(int i  = 0; i < BOARD_SIZE; i++) {
 		out << "   ---------------------------------------" << endl << i << " ";
 		for(int j = 0; j <  BOARD_SIZE; j++) {
@@ -205,6 +203,6 @@ ostream& operator <<(ostream& out, Board& b) {
 		}
 		out << "|" << endl;
 	}
-	out << "   ---------------------------------------" << endl;
+	out << "   ---------------------------------------" << endl << "X" << endl;
 	return out;
 }
