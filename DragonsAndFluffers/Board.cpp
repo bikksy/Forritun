@@ -1,7 +1,8 @@
 #include "Entity.h"
-#include "Player.cpp"
-#include "Dragon.cpp"
-#include "Fluffer.cpp"
+#include "Board.h"
+#include "Player.h"
+#include "Dragon.h"
+#include "Fluffer.h"
 
 //We need this for random.
 #include <stdlib.h>
@@ -11,35 +12,12 @@ using namespace std;
 
 //The board is an n*n matrix - so we use a constant to define the size of the board.
 //Then we could easily make the world larger or smaller by simply changing this constant.
-const int BOARD_SIZE = 10;
 const int NUMBER_OF_DRAGONS = 12;
 const int NUMBER_OF_FLUFFERS = 20;
+const int PLAYER = 0;
+const int DRAGON = 1;
+const int FLUFFER = 2;
 
-
-class Board
-{
-public:
-	//Default constructor
-	Board();
-	//Destructor
-	~Board();
-	//Iterates through all cells in the board, and updates all entities.
-	bool play();
-	//The bord handles moving the entities around.
-	void updateEntityLocation(Entity* e, int newX, int newY);
-	bool boundaryCheck(int x, int y);
-
-	//Overriding the outstream operator for the board.
-	friend std::ostream& operator <<(std::ostream& out, Board& b);
-
-private:
-	//We use an double array to represent the board, so it becomes a grid. Can be thought of as a
-	//chess board, for example.
-	Entity* board[BOARD_SIZE][BOARD_SIZE];
-	int numberOfMobs;
-	Player* player;
-
-};
 
 //Default constructor. Handles initalizing the board.
 Board::Board() {

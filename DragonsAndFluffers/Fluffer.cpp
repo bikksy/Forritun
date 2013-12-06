@@ -1,22 +1,13 @@
 #include <iostream>
-#include "Entity.h"
 #include <stdlib.h>
+
+#include "Fluffer.h"
 #include "time.h"
 using namespace std;
 
 const int FLUFFER = 2;
 const int FLUFFER_HEALTH = 5;
 
-class Fluffer : public Entity
-{
-public:
-	Fluffer(int x, int y);
-
-	virtual int getType();
-	virtual void move(int& newX, int& newY);
-	virtual void die();
-
-};
 
 Fluffer::Fluffer(int x, int y) : Entity(x, y, FLUFFER_HEALTH) {};
 

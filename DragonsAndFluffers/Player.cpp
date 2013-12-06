@@ -1,27 +1,11 @@
 #include <iostream>
 #include <ctype.h>
-#include "Entity.h"
+#include "Player.h"
 using namespace std;
 
 const int PLAYER = 0;
 const int PLAYER_HEALTH = 100;
 const int PLAYER_STARTING_ARMOR = 50;
-
-class Player : public Entity {
-public:
-	Player(int x, int y);
-//	~Player();
-
-    virtual int getType();
-    virtual void move(int& newX, int& newY);
-    virtual void die();
-    int getArmor();
-
-
-    friend ostream& operator <<(ostream& out, Player& p);
-private:
-	int armor;
-};
 
 
 Player::Player(int x, int y) : Entity(x, y, PLAYER_HEALTH) {

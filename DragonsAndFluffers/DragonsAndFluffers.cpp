@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Entity.h"
-#include "Board.cpp"
+#include "Board.h"
 
 
 using namespace std;

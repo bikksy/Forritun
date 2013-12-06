@@ -1,19 +1,9 @@
 #include <iostream>
-#include "Entity.h"
+#include "Dragon.h"
 using namespace std;
 
 const int DRAGON = 1;
 const int DRAGON_HEALTH = 200;
-
-
-class Dragon : public Entity {
-public:
-	Dragon(int x, int y);
-
-    virtual int getType();
-    virtual void move(int& newX, int& newY);
-    virtual void die();
-};
 
 
 Dragon::Dragon(int x, int y) : Entity(x, y, DRAGON_HEALTH) {};
